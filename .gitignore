@@ -1,3 +1,6 @@
+#IDEA
+.idea
+
 *.py[cod]
 testfile/input_*
 testfile/output_*

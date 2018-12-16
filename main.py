@@ -1,9 +1,18 @@
-# -*- coding: utf-8 -*-
-from PyQt4 import QtGui, QtCore, uic
+from PyQt5 import QtGui, QtCore, uic, QtWidgets
+#from qtpy import QtGui, QtCore, QtWidgets
+import xml.etree.ElementTree as xml
+import pyside2uic
+from io import StringIO
+
+
+
+
+
 from layout import Canvas
 import sys
 uifile = 'layout.ui'
 form, base = uic.loadUiType(uifile)
+
 
 class CreateLayout(base,form):
     def __init__(self):
@@ -12,10 +21,10 @@ class CreateLayout(base,form):
         self.PaintPanel = Canvas(self)
         self.canvas.insertWidget(0,self.PaintPanel)
         self.canvas.setCurrentWidget(self.PaintPanel)
-        self.data_info= QtGui.QLabel()
+        self.data_info= QtWidgets.QLabel()
         self.scrollArea.setWidget(self.data_info)
 
-        self.output_info = QtGui.QLabel()
+        self.output_info = QtWidgets.QLabel()
         self.output_area.setWidget(self.output_info)
 
         self.Establish_Connections()
@@ -31,7 +40,7 @@ class CreateLayout(base,form):
         self.next_data.setEnabled(False)
 
 def main():
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     ex = CreateLayout()
     ex.show()
     sys.exit(app.exec_())

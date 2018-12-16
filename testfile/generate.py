@@ -1,5 +1,5 @@
-
-class Point(object):
+#!/usr/bin/env python3
+class Point():
     def __init__(self,x,y):
         self.x = x
         self.y = y
@@ -10,7 +10,7 @@ class Point(object):
 
 if __name__ == '__main__':
     import random
-    number = int(raw_input('How many points you want to generated? '))
+    number = int(input('How many points you want to generated? '))
     data = set()
     while len(data) < number:
         x = random.randint(0,610)
@@ -22,4 +22,4 @@ if __name__ == '__main__':
         for p in data:
             out.write(str(p.x)+' '+str(p.y)+'\n')
         out.write('0')
-    print filename,'was generated'
+    print(f'{filename} was generated')

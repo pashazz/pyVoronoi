@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 from shape import Line,Point
 from ch import ConvexHull
@@ -182,7 +181,7 @@ class VD:
                     ray = result_l[2]
                     side = 'left'
                 else:
-                    print 'confused...'
+                    print ('confused...')
                     #print result_l,result_r
             else:
                 if result_l is not None and result_r is None:

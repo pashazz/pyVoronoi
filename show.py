@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from shape import Point,Line
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from collections import defaultdict
 from operator import attrgetter
 
@@ -20,8 +20,8 @@ class IOData:
 
     def ReadFile(self,filename = None):
         self.painter.drawDisplay.ClearCanvas()
-        filename = QtGui.QFileDialog.getOpenFileName()
-        if filename != '':
+        filename, _ = QtWidgets.QFileDialog.getOpenFileName()
+        if filename:
             f = open(filename,'r')
             self.readPoints = [[],0]
             self._readPoints = [[],0]
@@ -86,16 +86,16 @@ class IOData:
         f.close()
 
         #completed answer
-        filename = QtGui.QFileDialog.getSaveFileName()
-        if filename != '':
+        filename, _ = QtWidgets.QFileDialog.getSaveFileName()
+        if filename:
             f = open(filename,'w')
             f.write(self.painter.parent.output_info.text())
             f.close()
 
     def read_output(self):
         self.painter.drawDisplay.ClearCanvas()
-        filename = QtGui.QFileDialog.getOpenFileName()
-        if filename != '':
+        filename, _ = QtWidgets.QFileDialog.getOpenFileName()
+        if filename:
             f = open(filename,'r')
             lines = f.readlines()
             points = []
@@ -126,7 +126,7 @@ class IOData:
         self.painter.drawDisplay.ClearCanvas()
         self.painter.points = []
         self.painter._points = []
-        print 'next_data'
+        print('next_data')
         t = self.readPoints[1]
         _t = self._readPoints[1]
         if t == len(self.readPoints[0]):

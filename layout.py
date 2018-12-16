@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 from __future__ import division
 from collections import defaultdict
 from operator import attrgetter
-from PyQt4 import QtGui,QtCore
+from PyQt5 import QtGui,QtCore, QtWidgets
 from shape import Point,Line
 from diagram import VD
 from show import IOData,drawDisplay,traverse
@@ -21,14 +19,14 @@ def savevd(lines,range_points,self,convex):
         line.append(t)
     return VD(line,range_points,self,convex = convex)
 
-class Canvas(QtGui.QWidget):
+class Canvas(QtWidgets.QWidget):
     edge_painter = (Line(Point(0,0),Point(610,0)),Line(Point(0,0),Point(0,610)),Line(Point(610,0),Point(610,610)),Line(Point(0,610),Point(610,610)))
     def __init__(self,parent = None):
         super(Canvas, self).__init__()
         self.IOData = IOData(self)
         self.drawDisplay = drawDisplay(self)
         self.parent = parent
-        self.points = set()
+        self.points = []
         #used to output original points include duplicate
         self._points = []
         self.lines = []
@@ -45,7 +43,7 @@ class Canvas(QtGui.QWidget):
         p = Point(event.x(),event.y())
         self._points.append(p)
         if p not in self.points:
-            self.points.add(p)
+            self.points.append(p)
         self.drawDisplay.display_points(p)
         self.update()
 
@@ -197,7 +195,7 @@ class Canvas(QtGui.QWidget):
             return merge_vd
 
     def prepare(self):
-        pset = self.points
+        pset = set(self.points)
         self.points = []
         for p in pset:
             self.points.append(p)

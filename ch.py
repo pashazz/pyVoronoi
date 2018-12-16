@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 class ConvexHull:
     def __init__(self,vd):
